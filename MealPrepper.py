@@ -72,6 +72,10 @@ if match_string3:
     h = match_string + ', ' + match_string1 + ', ' + match_string2 + ', ' + match_string3
    
     history = list(h.split(','))
+    
+    for q in range(len(history)):
+        history[q] = history[q].strip()
+    
     my_dict = {i:history.count(i) for i in history}
     sorted_ = sorted(my_dict, key=my_dict.get)[::-1]
     
@@ -80,6 +84,8 @@ if match_string3:
     for i in sorted_:
         if i != 0:
             str_ = str_ + "," + i
+        if i == 0:
+            str_ = i
     
     x = re.findall(" *\\w+, *\\w+", str_)[0]
     st.text("Recipes with your top 1 ingredient:")
